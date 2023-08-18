@@ -80,7 +80,13 @@ export interface ChartTooltipProps {
   valueFormatter: ValueFormatter;
 }
 
-const ChartTooltip = ({ active, payload, label }: PropsWithChildren<ChartTooltipProps>) => {
+const ChartTooltip = ({
+  active,
+  payload,
+  label,
+  categoryColors,
+  valueFormatter,
+}: PropsWithChildren<ChartTooltipProps>) => {
   if (active && payload) {
     return (
       <ChartTooltipFrame>
@@ -110,35 +116,19 @@ const ChartTooltip = ({ active, payload, label }: PropsWithChildren<ChartTooltip
         </div>
 
         <div className={tremorTwMerge(spacing.twoXl.paddingX, spacing.sm.paddingY, "space-y-1")}>
-          {getCustomContent(label)}
+          {payload.map(({ value, name }: { value: number; name: string }, idx: number) => (
+            <ChartTooltipRow
+              key={`id-${idx}`}
+              value={valueFormatter(value)}
+              name={name}
+              color={categoryColors.get(name) ?? BaseColors.Blue}
+            />
+          ))}
         </div>
       </ChartTooltipFrame>
     );
   }
   return null;
 };
-
-function getCustomContent(label: string): JSX.Element {
-  switch (label) {
-    case "Aug 2022": {
-      return (
-        <ul className="text-base font-light">
-          <li>
-            Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
-            the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
-            Guardian)
-          </li>
-          <li>
-            Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
-            the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
-            Guardian)
-          </li>
-        </ul>
-      );
-    }
-    default:
-      return <>{label}</>;
-  }
-}
 
 export default ChartTooltip;

@@ -16,5 +16,5 @@ export interface ChartTooltipProps {
     categoryColors: Map<string, Color>;
     valueFormatter: ValueFormatter;
 }
-declare const ChartTooltip: ({ active, payload, label }: PropsWithChildren<ChartTooltipProps>) => React.JSX.Element | null;
+declare const ChartTooltip: ({ active, payload, label, categoryColors, valueFormatter, }: PropsWithChildren<ChartTooltipProps>) => React.JSX.Element | null;
 export default ChartTooltip;
