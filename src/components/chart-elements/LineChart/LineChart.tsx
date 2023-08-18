@@ -158,22 +158,24 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
             ) : null}
             {categories.map((category) => (
               <Line
+                {...(activeDot
+                  ? { activeDot }
+                  : {
+                      activeDot: {
+                        className: tremorTwMerge(
+                          "stroke-tremor-background dark:stroke-dark-tremor-background",
+                          getColorClassNames(
+                            categoryColors.get(category) ?? BaseColors.Gray,
+                            colorPalette.text,
+                          ).fillColor,
+                        ),
+                      },
+                    })}
                 className={
                   getColorClassNames(
                     categoryColors.get(category) ?? BaseColors.Gray,
                     colorPalette.text,
                   ).strokeColor
-                }
-                activeDot={
-                  activeDot ?? {
-                    className: tremorTwMerge(
-                      "stroke-tremor-background dark:stroke-dark-tremor-background",
-                      getColorClassNames(
-                        categoryColors.get(category) ?? BaseColors.Gray,
-                        colorPalette.text,
-                      ).fillColor,
-                    ),
-                  }
                 }
                 dot={dot}
                 key={category}
