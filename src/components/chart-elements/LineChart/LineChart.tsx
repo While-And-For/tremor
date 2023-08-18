@@ -162,43 +162,45 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
                 cursor={{ stroke: "#d1d5db", strokeWidth: 1 }}
-                content={({ active, payload, label }) => (
-                  <ChartTooltipFrame>
-                    <div
-                      className={tremorTwMerge(
-                        // light
-                        "border-tremor-border",
-                        // dark
-                        "dark:border-dark-tremor-border",
-                        spacing.twoXl.paddingX,
-                        spacing.sm.paddingY,
-                        border.sm.bottom,
-                      )}
-                    >
-                      <p
-                        className={tremorTwMerge(
-                          // common
-                          "font-medium",
-                          // light
-                          "text-tremor-content-emphasis",
-                          // dark
-                          "dark:text-dark-tremor-content-emphasis",
-                        )}
-                      >
-                        {label}
-                      </p>
+                content={({ active, payload, label }) =>
+                  !!getLabelContent(label) && (
+                    <ChartTooltipFrame>
                       <div
                         className={tremorTwMerge(
+                          // light
+                          "border-tremor-border",
+                          // dark
+                          "dark:border-dark-tremor-border",
                           spacing.twoXl.paddingX,
                           spacing.sm.paddingY,
-                          "space-y-1",
+                          border.sm.bottom,
                         )}
                       >
-                        {getLabelContent(label)}
+                        <p
+                          className={tremorTwMerge(
+                            // common
+                            "font-medium",
+                            // light
+                            "text-tremor-content-emphasis",
+                            // dark
+                            "dark:text-dark-tremor-content-emphasis",
+                          )}
+                        >
+                          {label}
+                        </p>
+                        <div
+                          className={tremorTwMerge(
+                            spacing.twoXl.paddingX,
+                            spacing.sm.paddingY,
+                            "space-y-1",
+                          )}
+                        >
+                          {getLabelContent(label)}
+                        </div>
                       </div>
-                    </div>
-                  </ChartTooltipFrame>
-                )}
+                    </ChartTooltipFrame>
+                  )
+                }
                 position={{ y: 0 }}
               />
             ) : null}
