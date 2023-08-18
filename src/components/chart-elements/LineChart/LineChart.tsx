@@ -168,7 +168,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                     ).fillColor,
                   ),
                 }}
-                dot={false}
+                dot={{ stroke: '#FBF7EE', r:4, strokeWidth: 2 }}
                 key={category}
                 name={category}
                 type={curveType}

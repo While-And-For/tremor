@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Color, ValueFormatter } from "../../../lib";
 export declare const ChartTooltipFrame: ({ children }: {
     children: React.ReactNode;
@@ -16,5 +16,5 @@ export interface ChartTooltipProps {
     categoryColors: Map<string, Color>;
     valueFormatter: ValueFormatter;
 }
-declare const ChartTooltip: ({ active, payload, label, categoryColors, valueFormatter, }: ChartTooltipProps) => React.JSX.Element | null;
+declare const ChartTooltip: ({ active, payload, label, categoryColors, valueFormatter, }: PropsWithChildren<ChartTooltipProps>) => React.JSX.Element | null;
 export default ChartTooltip;

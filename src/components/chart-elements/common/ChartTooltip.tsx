@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { tremorTwMerge } from "../../../lib";
 
 import { Color, ValueFormatter } from "../../../lib";
@@ -86,7 +86,7 @@ const ChartTooltip = ({
   label,
   categoryColors,
   valueFormatter,
-}: ChartTooltipProps) => {
+}: PropsWithChildren<ChartTooltipProps>) => {
   if (active && payload) {
     return (
       <ChartTooltipFrame>
