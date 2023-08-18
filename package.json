@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tremorlabs/tremor.git"
+    "url": "git+https://github.com/tremorlabs/tremor.git"
   },
   "author": "tremor",
-  "license": "Apache 2.0",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/tremorlabs/tremor/issues"
   },
@@ -136,5 +136,10 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
-  }
+  },
+  "keywords": [
+    "tremor",
+    "custom",
+    "react"
+  ]
 }
