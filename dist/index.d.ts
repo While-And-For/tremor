@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import React$1, { ReactNode } from 'react';
+import { LineProps } from 'recharts';
 import { enUS } from 'date-fns/locale';
 
 type ValueFormatter = {
@@ -66,6 +67,8 @@ declare const BarChart: React$1.ForwardRefExoticComponent<BarChartProps & React$
 interface LineChartProps extends BaseChartProps {
     curveType?: CurveType;
     connectNulls?: boolean;
+    dot?: LineProps["dot"];
+    activeDot?: LineProps["activeDot"];
 }
 declare const LineChart: React$1.ForwardRefExoticComponent<LineChartProps & React$1.RefAttributes<HTMLDivElement>>;
 

@@ -4,6 +4,7 @@ import {
   CartesianGrid,
   Legend,
   Line,
+  LineProps,
   LineChart as ReChartsLineChart,
   ResponsiveContainer,
   Tooltip,
@@ -31,11 +32,15 @@ import { CurveType } from "../../../lib/inputTypes";
 export interface LineChartProps extends BaseChartProps {
   curveType?: CurveType;
   connectNulls?: boolean;
+  dot?: LineProps["dot"];
+  activeDot?: LineProps["activeDot"];
 }
 
 const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) => {
   const {
     data = [],
+    dot = false,
+    activeDot,
     categories = [],
     index,
     colors = themeColorRange,
@@ -159,16 +164,18 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                     colorPalette.text,
                   ).strokeColor
                 }
-                activeDot={{
-                  className: tremorTwMerge(
-                    "stroke-tremor-background dark:stroke-dark-tremor-background",
-                    getColorClassNames(
-                      categoryColors.get(category) ?? BaseColors.Gray,
-                      colorPalette.text,
-                    ).fillColor,
-                  ),
-                }}
-                dot={{ stroke: '#FBF7EE', r:4, strokeWidth: 2 }}
+                activeDot={
+                  activeDot ?? {
+                    className: tremorTwMerge(
+                      "stroke-tremor-background dark:stroke-dark-tremor-background",
+                      getColorClassNames(
+                        categoryColors.get(category) ?? BaseColors.Gray,
+                        colorPalette.text,
+                      ).fillColor,
+                    ),
+                  }
+                }
+                dot={dot}
                 key={category}
                 name={category}
                 type={curveType}
