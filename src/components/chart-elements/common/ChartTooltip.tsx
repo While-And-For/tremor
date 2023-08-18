@@ -87,6 +87,7 @@ const ChartTooltip = ({
   categoryColors,
   valueFormatter,
 }: PropsWithChildren<ChartTooltipProps>) => {
+  console.log(active, payload, label);
   if (active && payload) {
     return (
       <ChartTooltipFrame>
