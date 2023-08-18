@@ -1,5 +1,5 @@
 {
-  "name": "@while-and-for/tremor-react",
+  "name": "@tremor/react",
   "version": "0.0.1-development",
   "description": "The React library to build dashboards faster.",
   "scripts": {
