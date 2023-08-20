@@ -42,13 +42,13 @@ function getLabelContent(label: string): JSX.Element | null {
   switch (label) {
     case "Aug 2022": {
       return (
-        <ul className="list-disc">
-          <li className="text-sm font-light text-neutral max-w-[xl]">
+        <ul className="list-disc max-w-[500px]">
+          <li className="text-sm font-light text-neutral">
             Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
             the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
             Guardian)
           </li>
-          <li className="text-sm font-light text-neutral max-w-[xl]">
+          <li className="text-sm font-light text-neutral">
             Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
             the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
             Guardian)
