@@ -42,13 +42,13 @@ function getLabelContent(label: string): JSX.Element | null {
   switch (label) {
     case "Aug 2022": {
       return (
-        <ul className="text-sm font-light text-neutral max-w-[xl]">
-          <li>
+        <ul className="list-disc">
+          <li className="text-sm font-light text-neutral max-w-[xl]">
             Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
             the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
             Guardian)
           </li>
-          <li>
+          <li className="text-sm font-light text-neutral max-w-[xl]">
             Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
             the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
             Guardian)
@@ -58,13 +58,6 @@ function getLabelContent(label: string): JSX.Element | null {
     }
     default:
       return null;
-  }
-}
-
-function toolTipFormatter(label: string): JSX.Element | null {
-  switch (label) {
-    case "Aug 2022":
-      return;
   }
 }
 
@@ -168,6 +161,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 // ongoing issue: https://github.com/recharts/recharts/issues/2920
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
+                cursor={false}
                 formatter={(..._test) => {
                   console.log(_test);
                   if (_test[0] !== "Aug 2022") return null;
