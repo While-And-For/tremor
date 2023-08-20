@@ -177,7 +177,6 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                           "dark:border-dark-tremor-border",
                           spacing.twoXl.paddingX,
                           spacing.sm.paddingY,
-                          border.sm.bottom,
                         )}
                       >
                         <p
