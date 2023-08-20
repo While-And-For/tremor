@@ -38,11 +38,11 @@ export interface LineChartProps extends BaseChartProps {
   activeDot?: LineProps["activeDot"];
 }
 
-function getLabelContent(label: string): JSX.Element | "" {
+function getLabelContent(label: string): JSX.Element | null {
   switch (label) {
     case "Aug 2022": {
       return (
-        <ul className="text-base font-light">
+        <ul className="text-sm font-light text-neutral max-w-[xl]">
           <li>
             Ev Summit: Hope that now is time for the EV market boom in Australia. Consumers say yes,
             the numbers add up, Industry is largely on board and labour has no policy hang-ups (The
@@ -57,7 +57,14 @@ function getLabelContent(label: string): JSX.Element | "" {
       );
     }
     default:
-      return "";
+      return null;
+  }
+}
+
+function toolTipFormatter(label: string): JSX.Element | null {
+  switch (label) {
+    case "Aug 2022":
+      return;
   }
 }
 
@@ -161,7 +168,10 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 // ongoing issue: https://github.com/recharts/recharts/issues/2920
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
-                cursor={{ stroke: "#d1d5db", strokeWidth: 1 }}
+                formatter={(..._test) => {
+                  console.log(_test);
+                  if (_test[0] !== "Aug 2022") return null;
+                }}
                 content={({ active, payload, label }) =>
                   !!getLabelContent(label) && (
                     <ChartTooltipFrame>
