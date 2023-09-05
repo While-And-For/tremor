@@ -92,7 +92,7 @@ const ChartTooltip = ({
           <p
             className={tremorTwMerge(
               // common
-              "font-medium text-[25px]",
+              "font-medium text-base",
               // light
               "text-tremor-content-emphasis",
               // dark
