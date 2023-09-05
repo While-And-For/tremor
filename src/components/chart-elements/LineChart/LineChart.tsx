@@ -48,7 +48,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
   const {
     data = [],
     dot = false,
-    // activeDot,
+    activeDot,
     categories = [],
     index,
     colors = themeColorRange,
@@ -173,15 +173,17 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                   ).strokeColor
                 }
                 dot={dot}
-                activeDot={{
-                  className: tremorTwMerge(
-                    "stroke-tremor-background dark:stroke-dark-tremor-background",
-                    getColorClassNames(
-                      categoryColors.get(category) ?? BaseColors.Gray,
-                      colorPalette.text,
-                    ).fillColor,
-                  ),
-                }}
+                activeDot={
+                  activeDot ?? {
+                    className: tremorTwMerge(
+                      "stroke-tremor-background dark:stroke-dark-tremor-background",
+                      getColorClassNames(
+                        categoryColors.get(category) ?? BaseColors.Gray,
+                        colorPalette.text,
+                      ).fillColor,
+                    ),
+                  }
+                }
                 key={category}
                 name={category}
                 type={curveType}
