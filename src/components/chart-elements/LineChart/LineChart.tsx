@@ -143,6 +143,9 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
                 cursor={false}
+                formatter={(..._props) => {
+                  if (!getLabelContent(_props[0] as any)) return null;
+                }}
                 content={({ label }) =>
                   !!getLabelContent(label) && (
                     <ChartTooltipFrame>
