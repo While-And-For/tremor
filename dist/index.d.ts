@@ -69,6 +69,7 @@ interface LineChartProps extends BaseChartProps {
     connectNulls?: boolean;
     dot?: LineProps["dot"];
     activeDot?: LineProps["activeDot"];
+    getLabelContent?: (a?: string) => JSX.Element | null;
 }
 declare const LineChart: React$1.ForwardRefExoticComponent<LineChartProps & React$1.RefAttributes<HTMLDivElement>>;
 

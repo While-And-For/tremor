@@ -17,7 +17,9 @@ import { constructCategoryColors, getYAxisDomain } from "../common/utils";
 import NoData from "../common/NoData";
 import BaseChartProps from "../common/BaseChartProps";
 import ChartLegend from "components/chart-elements/common/ChartLegend";
-import ChartTooltip from "../common/ChartTooltip";
+import { ChartTooltipFrame } from "../common/ChartTooltip";
+
+import { spacing } from "lib";
 
 import {
   BaseColors,
@@ -35,20 +37,13 @@ export interface LineChartProps extends BaseChartProps {
   connectNulls?: boolean;
   dot?: LineProps["dot"];
   activeDot?: LineProps["activeDot"];
-}
-
-function getLabelContent(label: string): JSX.Element | null {
-  switch (label) {
-    default:
-      return null;
-  }
+  getLabelContent?: (a?: string) => JSX.Element | null;
 }
 
 const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) => {
   const {
     data = [],
     dot = false,
-    activeDot,
     categories = [],
     index,
     colors = themeColorRange,
@@ -70,6 +65,9 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     allowDecimals = true,
     noDataText,
     className,
+    // Custom props
+    activeDot,
+    getLabelContent = () => false,
     ...other
   } = props;
   const [legendHeight, setLegendHeight] = useState(60);
@@ -145,15 +143,44 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                 wrapperStyle={{ outline: "none" }}
                 isAnimationActive={false}
                 cursor={false}
-                content={({ active, payload, label }) => (
-                  <ChartTooltip
-                    active={active}
-                    payload={payload}
-                    label={label}
-                    valueFormatter={valueFormatter}
-                    categoryColors={categoryColors}
-                  />
-                )}
+                content={({ label }) =>
+                  !!getLabelContent(label) && (
+                    <ChartTooltipFrame>
+                      <div
+                        className={tremorTwMerge(
+                          // light
+                          "border-tremor-border",
+                          // dark
+                          "dark:border-dark-tremor-border",
+                          spacing.twoXl.paddingX,
+                          spacing.sm.paddingY,
+                        )}
+                      >
+                        <p
+                          className={tremorTwMerge(
+                            // common
+                            "font-medium",
+                            // light
+                            "text-tremor-content-emphasis",
+                            // dark
+                            "dark:text-dark-tremor-content-emphasis",
+                          )}
+                        >
+                          {label}
+                        </p>
+                        <div
+                          className={tremorTwMerge(
+                            spacing.twoXl.paddingX,
+                            spacing.sm.paddingY,
+                            "space-y-1",
+                          )}
+                        >
+                          {getLabelContent(label)}
+                        </div>
+                      </div>
+                    </ChartTooltipFrame>
+                  )
+                }
                 position={{ y: 0 }}
               />
             ) : null}

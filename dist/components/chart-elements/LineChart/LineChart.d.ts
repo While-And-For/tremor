@@ -7,6 +7,7 @@ export interface LineChartProps extends BaseChartProps {
     connectNulls?: boolean;
     dot?: LineProps["dot"];
     activeDot?: LineProps["activeDot"];
+    getLabelContent?: (a?: string) => JSX.Element | null;
 }
 declare const LineChart: React.ForwardRefExoticComponent<LineChartProps & React.RefAttributes<HTMLDivElement>>;
 export default LineChart;
